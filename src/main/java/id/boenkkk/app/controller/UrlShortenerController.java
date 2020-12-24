@@ -38,6 +38,7 @@ public class UrlShortenerController {
 
             return new ResponseEntity<>(urlShorteners, HttpStatus.OK);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -63,7 +64,8 @@ public class UrlShortenerController {
 
             return new ResponseEntity<>(_urlShortener, HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
