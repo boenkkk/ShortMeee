@@ -47,9 +47,9 @@ public class UrlShortenerController {
     public ResponseEntity<UrlShortener> createUrlShortener(@RequestBody UrlShortener urlShortener) {
         try {
             urlShortener.setHash(new StringUtil().generateString());
+            urlShortener.setUsername(urlShortener.getUsername().isEmpty() ? "guest" : urlShortener.getUsername());
             urlShortener.setCreated_date(new DateTimeUtil().getDate());
             urlShortener.setCreated_time(new DateTimeUtil().getTime());
-            urlShortener.setUsername("user");
 
             UrlShortener _urlShortener = urlShortenerRepository
                     .save(
@@ -57,6 +57,7 @@ public class UrlShortenerController {
                                     urlShortener.getHash(),
                                     urlShortener.getUrl(),
                                     urlShortener.getUsername(),
+                                    urlShortener.getHit(),
                                     urlShortener.getCreated_date(),
                                     urlShortener.getCreated_time()
                             )
